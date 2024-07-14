@@ -3,24 +3,52 @@ package ru.aston;
 import java.util.Arrays;
 import java.util.Random;
 
-import static ru.aston.InitialData.*;
-
 public class Main {
 
     public static void main(String[] args) {
-        Employee[] employees = new Employee[ARRAY_SIZE];
+        Employee[] employees = new Employee[5];
         Random random = new Random();
 
-        for (int i = 0; i < ARRAY_SIZE; i++) {
-            employees[i] = new Employee(ARRAY_LAST_NAME[i],
-                    ARRAY_FIRST_NAME[i],
-                    ARRAY_MIDDLE_NAME[i],
-                    ARRAY_POSITION[i],
-                    ARRAY_EMAIL_ID[i] + "@example.com",
-                    generateBelarusPhoneNumber(random),
-                    ARRAY_SALARY[i],
-                    ARRAY_AGE[i]);
-        }
+        employees[0] = new Employee("Иванов",
+                "Иван",
+                "Петрович",
+                "Менеджер",
+                "ivanov@example.com",
+                generateBelarusPhoneNumber(random),
+                1500.94,
+                35);
+        employees[1] = new Employee("Петров",
+                "Петр",
+                "Иванович",
+                "Разработчик",
+                "petrov@example.com",
+                generateBelarusPhoneNumber(random),
+                2000.74,
+                30);
+        employees[2] = new Employee("Сидоров",
+                "Александр",
+                "Сергеевич",
+                "Дизайнер",
+                "sidorov@example.com",
+                generateBelarusPhoneNumber(random),
+                1200.43,
+                28);
+        employees[3] = new Employee("Козлова",
+                "Елена",
+                "Алексеевна",
+                "Бухгалтер",
+                "kozlova@example.com",
+                generateBelarusPhoneNumber(random),
+                1800.51,
+                40);
+        employees[4] = new Employee("Новикова",
+                "Ольга",
+                "Михайловна",
+                "Тестировщик",
+                "novikova@example.com",
+                generateBelarusPhoneNumber(random),
+                1300.34,
+                27);
 
         Arrays.stream(employees).forEach(Employee::informationOutput);
 
