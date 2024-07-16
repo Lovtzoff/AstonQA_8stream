@@ -5,5 +5,6 @@ public class Main {
         TasksSolver tasksSolver = new TasksSolver();
 
         tasksSolver.getTask1();
+        tasksSolver.getTask2();
     }
 }

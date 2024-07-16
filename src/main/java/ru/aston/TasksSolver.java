@@ -4,12 +4,15 @@ import ru.aston.task1.Animal;
 import ru.aston.task1.Cat;
 import ru.aston.task1.Dog;
 import ru.aston.task1.Plate;
+import ru.aston.task2.Circle;
+import ru.aston.task2.Rectangle;
+import ru.aston.task2.Triangle;
 
 import java.util.Arrays;
 
 public class TasksSolver {
 
-    public void getTask1(){
+    public void getTask1() {
         System.out.println("\nTASK 1");
         Cat cat1 = new Cat("Барсик");
         Cat cat2 = new Cat("Васек");
@@ -51,6 +54,18 @@ public class TasksSolver {
         System.out.println("Количество котов: " + Cat.getCatCount());
         System.out.println("Количество собак: " + Dog.getDogCount());
         System.out.println("Общее количество животных: " + Animal.getAnimalCount());
+    }
+
+    public void getTask2() {
+        System.out.println("\nTASK 2");
+
+        Circle circle = new Circle("Красный", "Черный", 6);
+        Rectangle rectangle = new Rectangle("Синий", "Зеленый", 4, 6);
+        Triangle triangle = new Triangle("Желтый", "Фиолетовый", 3, 4, 5);
+
+        circle.printDetails();
+        rectangle.printDetails();
+        triangle.printDetails();
     }
 }
 
