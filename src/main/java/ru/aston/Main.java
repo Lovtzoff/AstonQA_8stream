@@ -1,20 +1,18 @@
 package ru.aston;
 
 import java.util.Arrays;
-import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
         Employee[] employees = new Employee[5];
-        Random random = new Random();
 
         employees[0] = new Employee("Иванов",
                 "Иван",
                 "Петрович",
                 "Менеджер",
                 "ivanov@example.com",
-                generateBelarusPhoneNumber(random),
+                "+375291367977",
                 1500.94,
                 35);
         employees[1] = new Employee("Петров",
@@ -22,7 +20,7 @@ public class Main {
                 "Иванович",
                 "Разработчик",
                 "petrov@example.com",
-                generateBelarusPhoneNumber(random),
+                "+375299161274",
                 2000.74,
                 30);
         employees[2] = new Employee("Сидоров",
@@ -30,7 +28,7 @@ public class Main {
                 "Сергеевич",
                 "Дизайнер",
                 "sidorov@example.com",
-                generateBelarusPhoneNumber(random),
+                "+375296219380",
                 1200.43,
                 28);
         employees[3] = new Employee("Козлова",
@@ -38,7 +36,7 @@ public class Main {
                 "Алексеевна",
                 "Бухгалтер",
                 "kozlova@example.com",
-                generateBelarusPhoneNumber(random),
+                "+375297241566",
                 1800.51,
                 40);
         employees[4] = new Employee("Новикова",
@@ -46,21 +44,13 @@ public class Main {
                 "Михайловна",
                 "Тестировщик",
                 "novikova@example.com",
-                generateBelarusPhoneNumber(random),
+                "+375292668790",
                 1300.34,
                 27);
 
         Arrays.stream(employees).forEach(Employee::informationOutput);
 
-        Park.Attraction attraction = new Park.Attraction("ВАЛЬС", "10:00 - 18:00", 5.00);
+        Park.Attraction attraction = new Park().new Attraction("ВАЛЬС", "10:00 - 18:00", 5.00);
         attraction.informationOutput();
-    }
-
-    private static String generateBelarusPhoneNumber(Random random) {
-        StringBuilder phoneNumber = new StringBuilder("+37529");
-        for (int i = 0; i < 7; i++) {
-            phoneNumber.append(random.nextInt(10));
-        }
-        return phoneNumber.toString();
     }
 }

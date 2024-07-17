@@ -2,7 +2,7 @@ package ru.aston;
 
 public class Park {
 
-    public static class Attraction {
+    public class Attraction {
 
         private String name;
         private String workingHours;
