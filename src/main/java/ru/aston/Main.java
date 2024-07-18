@@ -1,7 +1,9 @@
 package ru.aston;
 
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello ASTON!");
+        TasksSolver.getTask1();
+        TasksSolver.getTask2();
     }
 }
