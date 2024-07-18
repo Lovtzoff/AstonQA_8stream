@@ -50,7 +50,10 @@ public class Main {
 
         Arrays.stream(employees).forEach(Employee::informationOutput);
 
-        Park.Attraction attraction = new Park().new Attraction("ВАЛЬС", "10:00 - 18:00", 5.00);
-        attraction.informationOutput();
+        Park park = new Park("Гомельский парк аттракционов");
+        park.addAttractions("ВАЛЬС", "10:00 - 18:00", 5.00);
+        park.addAttractions("Летающий слон", "10:00 - 18:00", 5.50);
+        park.addAttractions("Чашечки", "10:00 - 18:00", 3.50);
+        park.informationOutput();
     }
 }
