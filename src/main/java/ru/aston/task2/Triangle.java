@@ -52,7 +52,7 @@ public class Triangle extends Figure {
 
     @Override
     public String toString() {
-        return "Треугольник[" +
+        return "Треугольник [" +
                 "Сторона A: " + sideA +
                 ", Сторона B: " + sideB +
                 ", Сторона C: " + sideC +

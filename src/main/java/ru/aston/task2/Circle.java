@@ -31,7 +31,7 @@ public class Circle extends Figure {
 
     @Override
     public String toString() {
-        return "Круг[" +
+        return "Круг [" +
                 "Радиус: " + radius +
                 ", Периметр: " + String.format(Locale.ROOT, "%.2f", calculatePerimeter()) +
                 ", Площадь: " + String.format(Locale.ROOT, "%.2f", calculateArea()) +

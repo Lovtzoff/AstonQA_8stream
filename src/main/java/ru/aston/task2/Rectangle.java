@@ -41,7 +41,7 @@ public class Rectangle extends Figure {
 
     @Override
     public String toString() {
-        return "Прямоугольник[" +
+        return "Прямоугольник [" +
                 "Ширина: " + width +
                 ", Высота: " + height +
                 ", Периметр: " + String.format(Locale.ROOT, "%.2f", calculatePerimeter()) +

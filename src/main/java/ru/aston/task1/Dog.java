@@ -15,14 +15,12 @@ public class Dog extends Animal {
         return dogCount;
     }
 
-    @Override
     public void run(int length) {
         System.out.println((length <= MAX_RUN_LENGTH) ?
                 (super.getName() + " пробежал " + length + " м.") :
                 (super.getName() + " не может пробежать " + length + " м."));
     }
 
-    @Override
     public void swim(int length) {
         System.out.println((length <= MAX_SWIM_LENGTH) ?
                 (super.getName() + " проплыл " + length + " м.") :
