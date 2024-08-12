@@ -53,9 +53,24 @@ public class MtsTest extends BaseTest {
 
     @Test
     public void testBePaidApp() {
-        mtsHomePage.enterDataForConnection("297777777", "15");
-        String message = "Окно для оплаты не отображается.";
-        assertTrue(mtsHomePage.isBePaidAppDisplayed(), message);
+        String phoneNumber = "297777777";
+        String amount = "15.50";
+        mtsHomePage.enterDataForConnection(phoneNumber, amount);
+        assertTrue(mtsHomePage.isBePaidIframeDisplayed(), "Окно для оплаты не отображается.");
+        assertTrue(mtsHomePage.getBePaidAmount().contains(amount), "Сумма не соответствует ожидаемой.");
+        assertTrue(mtsHomePage.getBePaidDescription().contains(phoneNumber), "Телефон не соответствует ожидаемому.");
+        assertTrue(mtsHomePage.getBePaidButtonText().contains(amount), "Сумма на кнопке не соответствует ожидаемой.");
+
+        assertEquals("Номер карты", mtsHomePage.getBePaidCardInputText());
+        assertEquals("Срок действия", mtsHomePage.getBePaidValidityCardText());
+        assertEquals("CVC", mtsHomePage.getBePaidCvcCardText());
+        assertEquals("Имя держателя (как на карте)", mtsHomePage.getBePaidCardholderNameText());
+
+        assertTrue(mtsHomePage.isBePaidVisaIconDisplayed(), "Иконка Visa не отображается.");
+        assertTrue(mtsHomePage.isBePaidMastercardIconDisplayed(), "Иконка Mastercard не отображается.");
+        assertTrue(mtsHomePage.isBePaidBelkartIconDisplayed(), "Иконка Belkart не отображается.");
+        assertTrue(mtsHomePage.isBePaidMaestroIconDisplayed(), "Иконка Maestro не отображается.");
+        assertTrue(mtsHomePage.isBePaidMirIconDisplayed(), "Иконка Mir не отображается.");
     }
 }
 
