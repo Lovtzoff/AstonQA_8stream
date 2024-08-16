@@ -3,7 +3,9 @@ package ru.aston;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static java.util.Collections.emptyMap;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static ru.aston.Constants.*;
 
 public class PostmanEchoTest extends BaseTest {
@@ -18,7 +20,7 @@ public class PostmanEchoTest extends BaseTest {
                 .spec(responseSpec)
                 .and().body("args." + FOO1, equalTo(BAR1))
                 .and().body("args." + FOO2, equalTo(BAR2))
-                .and().body("url", equalTo("http://postman-echo.com/get?foo1=bar1&foo2=bar2"));
+                .and().body("url", equalTo(BASE_URL + "/get?" + FOO1 + "=" + BAR1 + "&" + FOO2 + "=" + BAR2));
     }
 
     @Test
@@ -26,79 +28,96 @@ public class PostmanEchoTest extends BaseTest {
         String requestBody = "{\n    \"test\": \"value\"\n}";
 
         given().log().body()
-                .contentType("text/plain; charset=UTF-8").body(requestBody)
+                .contentType(CONTENT_TYPE_TEXT).body(requestBody)
                 .when()
                 .post("/post")
                 .then().log().body()
                 .spec(responseSpec)
+                .body("args", is(emptyMap()))   // Проверяем, что args пустой объект
                 .and().body("data", equalTo(requestBody))
+                .and().body("files", is(emptyMap()))    // Проверяем, что files пустой объект
+                .and().body("form", is(emptyMap()))    // Проверяем, что files пустой объект
                 .and().body("headers.content-length", equalTo("23"))
-                .and().body("headers.content-type", equalTo("text/plain; charset=UTF-8"))
+                .and().body("headers.content-type", equalTo(CONTENT_TYPE_TEXT))
                 .and().body("json", equalTo(null))
-                .and().body("url", equalTo("http://postman-echo.com/post"));
+                .and().body("url", equalTo(BASE_URL + "/post"));
     }
 
     @Test
     public void testPostFormData() {
-        given().contentType("application/x-www-form-urlencoded; charset=UTF-8")
+        String contentTypeFormData = "application/x-www-form-urlencoded; charset=UTF-8";
+
+        given().contentType(contentTypeFormData)
                 .formParam(FOO1, BAR1)
                 .formParam(FOO2, BAR2)
                 .when()
                 .post("/post")
                 .then().log().body()
                 .spec(responseSpec)
+                .body("args", is(emptyMap()))   // Проверяем, что args пустой объект
+                .and().body("data", is(""))   // Проверяем, что data пустая строка
+                .and().body("files", is(emptyMap()))    // Проверяем, что files пустой объект
                 .and().body("form." + FOO1, equalTo(BAR1))
                 .and().body("form." + FOO2, equalTo(BAR2))
                 .and().body("headers.content-length", equalTo("19"))
-                .and().body("headers.content-type", equalTo("application/x-www-form-urlencoded; charset=UTF-8"))
+                .and().body("headers.content-type", equalTo(contentTypeFormData))
                 .and().body("json." + FOO1, equalTo(BAR1))
                 .and().body("json." + FOO2, equalTo(BAR2))
-                .and().body("url", equalTo("http://postman-echo.com/post"));
+                .and().body("url", equalTo(BASE_URL + "/post"));
     }
 
     @Test
     public void testPutRequest() {
         given().log().body()
-                .contentType("text/plain; charset=UTF-8").body(REQUEST_BODY)
+                .contentType(CONTENT_TYPE_TEXT).body(REQUEST_BODY)
                 .when()
                 .put("/put")
                 .then().log().body()
                 .spec(responseSpec)
+                .body("args", is(emptyMap()))   // Проверяем, что args пустой объект
                 .and().body("data", equalTo(REQUEST_BODY))
+                .and().body("files", is(emptyMap()))    // Проверяем, что files пустой объект
+                .and().body("form", is(emptyMap()))    // Проверяем, что files пустой объект
                 .and().body("headers.content-length", equalTo("58"))
-                .and().body("headers.content-type", equalTo("text/plain; charset=UTF-8"))
+                .and().body("headers.content-type", equalTo(CONTENT_TYPE_TEXT))
                 .and().body("json", equalTo(null))
-                .and().body("url", equalTo("http://postman-echo.com/put"));
+                .and().body("url", equalTo(BASE_URL + "/put"));
     }
 
     @Test
     public void testPatchRequest() {
         given().log().body()
-                .contentType("text/plain; charset=UTF-8").body(REQUEST_BODY)
+                .contentType(CONTENT_TYPE_TEXT).body(REQUEST_BODY)
                 .when()
                 .patch("/patch")
                 .then().log().body()
                 .spec(responseSpec)
+                .body("args", is(emptyMap()))   // Проверяем, что args пустой объект
                 .and().body("data", equalTo(REQUEST_BODY))
+                .and().body("files", is(emptyMap()))    // Проверяем, что files пустой объект
+                .and().body("form", is(emptyMap()))    // Проверяем, что files пустой объект
                 .and().body("headers.content-length", equalTo("58"))
-                .and().body("headers.content-type", equalTo("text/plain; charset=UTF-8"))
+                .and().body("headers.content-type", equalTo(CONTENT_TYPE_TEXT))
                 .and().body("json", equalTo(null))
-                .and().body("url", equalTo("http://postman-echo.com/patch"));
+                .and().body("url", equalTo(BASE_URL + "/patch"));
     }
 
     @Test
     public void testDeleteRequest() {
         given().log().body()
-                .contentType("text/plain; charset=UTF-8").body(REQUEST_BODY)
+                .contentType(CONTENT_TYPE_TEXT).body(REQUEST_BODY)
                 .when()
                 .delete("/delete")
                 .then().log().body()
                 .spec(responseSpec)
+                .body("args", is(emptyMap()))   // Проверяем, что args пустой объект
                 .and().body("data", equalTo(REQUEST_BODY))
+                .and().body("files", is(emptyMap()))    // Проверяем, что files пустой объект
+                .and().body("form", is(emptyMap()))    // Проверяем, что files пустой объект
                 .and().body("headers.content-length", equalTo("58"))
-                .and().body("headers.content-type", equalTo("text/plain; charset=UTF-8"))
+                .and().body("headers.content-type", equalTo(CONTENT_TYPE_TEXT))
                 .and().body("json", equalTo(null))
-                .and().body("url", equalTo("http://postman-echo.com/delete"));
+                .and().body("url", equalTo(BASE_URL + "/delete"));
     }
 }
 

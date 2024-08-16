@@ -8,4 +8,5 @@ public class Constants {
     protected static final String FOO2 = "foo2";
     protected static final String BAR2 = "bar2";
     protected static final String REQUEST_BODY = "This is expected to be sent back as part of response body.";
+    protected static final String CONTENT_TYPE_TEXT = "text/plain; charset=UTF-8";
 }
