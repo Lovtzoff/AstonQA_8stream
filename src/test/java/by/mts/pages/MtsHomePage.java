@@ -1,5 +1,6 @@
 package by.mts.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -114,12 +115,14 @@ public class MtsHomePage {
     @FindBy(xpath = "//img[contains(@src, 'assets/images/payment-icons/card-types/mir-system-ru.svg')]")
     private WebElement bePaidMirIcon;
 
+    @Step("Принять cookies, если они отображаются")
     public void acceptCookiesIfPresent() {
         if (cookieBanner.isDisplayed()) {
             acceptCookiesButton.click();
         }
     }
 
+    @Step("Выбрать услугу: {serviceName}")
     public void selectService(String serviceName) {
         serviceDropdown.click();
         for (WebElement option : serviceOptions) {
@@ -130,58 +133,72 @@ public class MtsHomePage {
         }
     }
 
+    @Step("Получить текущую услугу")
     public String getCurrentService() {
         return currentService.getText();
     }
 
+    @Step("Получить заполнитель номера телефона для Услуг связи")
     public String getConnectionPhonePlaceholder() {
         return connectionPhone.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель суммы для Услуг связи")
     public String getConnectionSumPlaceholder() {
         return connectionSum.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель E-mail для Услуг связи")
     public String getConnectionEmailPlaceholder() {
         return connectionEmail.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель номера телефона для Интернета")
     public String getInternetPhonePlaceholder() {
         return internetPhone.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель суммы для Интернета")
     public String getInternetSumPlaceholder() {
         return internetSum.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель E-mail для Интернета")
     public String getInternetEmailPlaceholder() {
         return internetEmail.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель номера счета для Рассрочки")
     public String getScoreInstalmentPlaceholder() {
         return scoreInstalment.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель суммы для Рассрочки")
     public String getInstalmentSumPlaceholder() {
         return instalmentSum.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель E-mail для Рассрочки")
     public String getInstalmentEmailPlaceholder() {
         return instalmentEmail.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель номера счета для Задолженности")
     public String getScoreArrearsPlaceholder() {
         return scoreArrears.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель суммы для Задолженности")
     public String getArrearsSumPlaceholder() {
         return arrearsSum.getAttribute("placeholder");
     }
 
+    @Step("Получить заполнитель E-mail для Задолженности")
     public String getArrearsEmailPlaceholder() {
         return arrearsEmail.getAttribute("placeholder");
     }
 
+    @Step("Ввести данные для оплаты Услуг связи: номер телефона - {phoneNumber}, сумма - {amount}")
     public void enterDataForConnection(String phoneNumber, String amount) {
         connectionPhone.clear();
         connectionPhone.sendKeys(phoneNumber);
@@ -190,6 +207,7 @@ public class MtsHomePage {
         continueButton.click();
     }
 
+    @Step("Проверить, отображается ли окно оплаты")
     public boolean isBePaidIframeDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(bePaidIframe));
         boolean result = bePaidIframe.isDisplayed();
@@ -197,51 +215,63 @@ public class MtsHomePage {
         return result;
     }
 
+    @Step("Получить сумму в окне оплаты")
     public String getBePaidAmount() {
         wait.until(ExpectedConditions.visibilityOf(bePaidAmount));
         return bePaidAmount.getText();
     }
 
+    @Step("Получить описание в окне оплаты")
     public String getBePaidDescription() {
         return bePaidDescription.getText();
     }
 
+    @Step("Получить текст кнопки в окне оплаты")
     public String getBePaidButtonText() {
         return bePaidButton.getText();
     }
 
+    @Step("Получить текст поля ввода номера карты в окне оплаты")
     public String getBePaidCardInputText() {
         return bePaidCardInput.getText();
     }
 
+    @Step("Получить текст срока действия карты в окне оплаты")
     public String getBePaidValidityCardText() {
         return bePaidValidityCard.getText();
     }
 
+    @Step("Получить текст CVC карты в окне оплаты")
     public String getBePaidCvcCardText() {
         return bePaidCvcCard.getText();
     }
 
+    @Step("Получить текст имени держателя карты в окне оплаты")
     public String getBePaidCardholderNameText() {
         return bePaidCardholderName.getText();
     }
 
+    @Step("Проверить, отображается ли иконка Visa в окне оплаты")
     public boolean isBePaidVisaIconDisplayed() {
         return bePaidVisaIcon.isDisplayed();
     }
 
+    @Step("Проверить, отображается ли иконка Mastercard в окне оплаты")
     public boolean isBePaidMastercardIconDisplayed() {
         return bePaidMastercardIcon.isDisplayed();
     }
 
+    @Step("Проверить, отображается ли иконка Belkart в окне оплаты")
     public boolean isBePaidBelkartIconDisplayed() {
         return bePaidBelkartIcon.isDisplayed();
     }
 
+    @Step("Проверить, отображается ли иконка Maestro в окне оплаты")
     public boolean isBePaidMaestroIconDisplayed() {
         return bePaidMaestroIcon.isDisplayed();
     }
 
+    @Step("Проверить, отображается ли иконка Mir в окне оплаты")
     public boolean isBePaidMirIconDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(bePaidMirIcon));
         return bePaidMirIcon.isDisplayed();

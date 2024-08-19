@@ -6,6 +6,14 @@ repositories {
     mavenCentral()
 }
 
+// Define configuration for AspectJ agent
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -17,6 +25,9 @@ dependencies {
     testImplementation platform('io.qameta.allure:allure-bom:2.29.0')
     // https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5
     testImplementation 'io.qameta.allure:allure-junit5:2.29.0'
+    // Add aspectjweaver dependency
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+    agent 'org.aspectj:aspectjweaver:1.9.22.1'
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-nop
     testImplementation 'org.slf4j:slf4j-nop:2.0.16'
@@ -24,6 +35,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    // Configure javaagent for test execution
+    jvmArgs = ["-javaagent:${configurations.agent.singleFile}"]
 }
 
 tasks.withType(JavaCompile).configureEach {
